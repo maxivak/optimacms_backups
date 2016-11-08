@@ -1,5 +1,7 @@
 %h2 Backups - Local
 Local storage at #{OptimacmsBackups.backups_config['dir_backups_base']}
+%br
+click to download
 
 - @list_backups.each do |name, list|
   %h3=name
@@ -7,6 +9,9 @@ Local storage at #{OptimacmsBackups.backups_config['dir_backups_base']}
     - list.each do |r|
       %li{data: {f: r[:shortpath]}}
         =link_to r[:shortpath], download_admin_backups_path(f: r[:shortpath]), target: '_blank'
+        (
+        #{number_to_human_size(r[:size])}
+        )
         (
         =link_to 'delete', delete_admin_backups_path(f: Rack::Utils.escape(r[:shortpath])), :confirm => "Are you sure?", :method => :get, remote: true, :class=>'link_delete'
         )

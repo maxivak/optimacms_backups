@@ -25,6 +25,7 @@ class  OptimacmsBackups::Admin::BackupsController < Optimacms::Admin::AdminBaseC
       r = {}
       r[:shortpath] = f.gsub /#{dir_backups}/, ''
       r[:path] = f
+      r[:size] = File.size(f)
 
       r
     end
