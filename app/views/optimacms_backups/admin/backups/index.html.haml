@@ -1,0 +1,55 @@
+.page-header
+  .row
+    .col-md-7
+      %h1
+        Backups
+        %small
+          <i class="ace-icon fa fa-angle-double-right"></i>
+          manage backups
+
+%h2 Commands
+
+%ul.list-inline#commands
+  %li=link_to 'Backup all', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"full"
+  %li=link_to 'Backup files', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"files"
+  %li=link_to 'Backup DB', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"db"
+
+#status_commands.bg-info.well
+
+= render 'list'
+
+:javascript
+  // commands
+  $( '#commands a[data-name="command"]' ).click(function() {
+    //$('#status_commands').html("Handler for .click() called." );
+    send_command($(this).data('cmd'), $(this).data('cmd-type'));
+  });
+
+  function send_command(cmd, t){
+    $('#status_commands').html("Sending...");
+
+    $.ajax({
+      url: "/#{Optimacms.admin_namespace}/backups/" + cmd,
+      data: {t: t},
+      type: "GET",
+      dataType: "json",
+      contentType: "application/json",
+      beforeSend: function(){
+        // Handle the beforeSend event
+      },
+      success: function(res){
+        $('#status_commands').html("Result: "+res.res+", output: "+res.output);
+      },
+
+      complete: function (res) {
+
+      }
+
+    });
+  }
+
+
+  // delete
+  $("ul.list-backups").on( "ajax:success", "li a.link_delete", function() {
+    $(this).closest('li').hide();
+  });

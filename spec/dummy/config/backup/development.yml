@@ -1,0 +1,38 @@
+dir_backups_base: "/path/to/backups/myapp/"
+
+notify:
+  mail:
+    from: noreply@mysite.com
+    to: myemail@mysite.com
+    reply_to: myemail@mysite.com
+
+
+
+s3:
+  access_key_id: "xxx"
+  secret_access_key: "xxxxxx"
+  region: "us-west-1"
+  bucket: "my-backups"
+  #path: "/myapp"
+
+
+
+storages:
+  -
+    type: "local"
+    path: "/disk3/backups/myapp"
+
+
+  -
+    type: "scp"
+    username: "user"
+    password: 'pwd'
+    ip: '11.22.33.44'
+    port: 22
+    path: '/disk2/backups/myapp'
+
+  -
+    type: "s3"
+    region: "us-west-2"
+    bucket: "my-backups"
+    path: "/myapp"

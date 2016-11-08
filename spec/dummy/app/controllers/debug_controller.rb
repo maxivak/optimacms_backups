@@ -1,0 +1,4 @@
+class DebugController < ApplicationController
+
+
+end
