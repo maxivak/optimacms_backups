@@ -1,5 +1,5 @@
-%h2 Backups list
-
+%h2 Backups - Local
+Local storage at #{OptimacmsBackups.backups_config['dir_backups_base']}
 
 - @list_backups.each do |name, list|
   %h3=name
@@ -11,3 +11,12 @@
         =link_to 'delete', delete_admin_backups_path(f: Rack::Utils.escape(r[:shortpath])), :confirm => "Are you sure?", :method => :get, remote: true, :class=>'link_delete'
         )
         %br
+
+
+%h2 Backups config
+
+Storages:
+%ul
+  - OptimacmsBackups.backups_config['storages'].each do |r|
+    %li
+      =r['type']
