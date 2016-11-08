@@ -1,4 +1,4 @@
-$app_env = ENV['app_env'] || 'development'
+$app_env = ENV['RAILS_ENV'] || ENV['app_env'] || 'development'
 $rails_app_env = $app_env
 
 

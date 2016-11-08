@@ -21,9 +21,8 @@ gem install backup
 
 
 
-## Add optimacms_backups to your project
+* Gemfile:
 
-Gemfile:
 ```
 gem 'optimacms_backups'
 ```
@@ -79,16 +78,21 @@ end
             
 ```
  
+## Backups
+
+What to backup:
+* database - backup database (Mysql). Config is stored in backup/models/db_backup.rb  
+* user files - backup user files like public/uploads, etc. Config is stored in backup/models/user_files_backup.rb
+* app files - backup app files with app/, lib/ folders, etc without user files. Config is stored in backup/models/app_files_backup.rb
 
 
 ## Config
 
+* edit backup config for each environment in `config/backup/ __env__ .yml` 
 
-
-* edit backup config for each environment
-
+for example,
 ```
-# config/backup/development.yml
+config/backup/development.yml
 ```
 
 
@@ -100,6 +104,39 @@ end
 dir_backups_base: '/path/to/backups/myapp/' 
 
 
+```
+
+## Config for backups
+
+* Directories to include/exclude in app files backup in addition to base directories
+
+```
+# config/backup/ __env__ .yml
+
+backup:
+  app_files:
+    include:
+      - public/img
+      
+    exclude:
+      - public/cache
+      - app/assets
+      
+      
+```
+
+* Directories to include to user files backup. Only these directories will be included
+
+
+```
+# config/backup/ __env__ .yml
+
+backup:
+  user_files:
+    include:
+      - public/uploads
+      - public/images
+      
 ```
 
 
@@ -199,6 +236,23 @@ it will
 ```
 dir_backups_base: "/path/to/backups/myapp/"
 
+
+backup:
+  app_files:
+    exclude:
+      - public/system
+      - public/uploads
+      - data
+      - db
+
+
+  user_files:
+    include:
+      - public/uploads
+      - public/images
+
+      
+      
 notify:
   mail:
     from: noreply@mysite.com
@@ -246,7 +300,8 @@ storages:
 ## Perform backups manually
 
 ```
-app_env=production backup perform -t files_backup --root-path backup
+app_env=production backup perform -t app_files_backup --root-path backup
+app_env=production backup perform -t user_files_backup --root-path backup
 app_env=production backup perform -t db_backup --root-path backup
 ```
 

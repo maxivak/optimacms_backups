@@ -14,7 +14,8 @@ namespace :optimacms_backups do
     files = [
         'config.rb',
         'init.rb',
-        'models/files_backup.rb',
+        'models/app_files_backup.rb',
+        'models/user_files_backup.rb',
         'models/db_backup.rb'
     ]
 

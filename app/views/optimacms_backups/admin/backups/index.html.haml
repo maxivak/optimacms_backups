@@ -11,7 +11,8 @@
 
 %ul.list-inline#commands
   %li=link_to 'Backup all', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"full"
-  %li=link_to 'Backup files', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"files"
+  %li=link_to 'Backup app files', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"app_files"
+  %li=link_to 'Backup user files', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"user_files"
   %li=link_to 'Backup DB', '#', :class=>'btn btn-primary btn-sm', :"data-name"=>'command', :"data-cmd"=>'perform', :"data-cmd-type"=>"db"
 
 #status_commands.bg-info.well

@@ -4,7 +4,8 @@ class  OptimacmsBackups::Admin::BackupsController < Optimacms::Admin::AdminBaseC
 
     @list_backups = {
         'db'=>init_list('db_backup'),
-        'files'=>init_list('files_backup'),
+        'app_files'=>init_list('app_files_backup'),
+        'user_files'=>init_list('user_files_backup'),
     }
   end
 
@@ -83,10 +84,12 @@ class  OptimacmsBackups::Admin::BackupsController < Optimacms::Admin::AdminBaseC
 
 
   def perform_backup_full
-    res1 = perform_backup('files')
-    res2 = perform_backup('db')
+    res1 = perform_backup('db')
+    res2 = perform_backup('app_files')
+    res3 = perform_backup('user_files')
 
-    {res: (res1[:res]==1 && res2[:res]==1 ? 1 : 0), output: ""}
+
+    {res: (res1[:res]==1 && res2[:res]==1 && res3[:res]==1 ? 1 : 0), output: ""}
   end
 
   def perform_backup(t)
