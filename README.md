@@ -308,13 +308,43 @@ app_env=production backup perform -t db_backup --root-path backup
 
 ## Run backups with cron and whenever gem
 
+* use gem whenever to schedule backups
 
+```
+wheneverize
+```
+
+* edit `config/schedule.rb`
+
+```
+# add
+
+app_env = ENV['app_env'] || ENV['RAILS_ENV']
+
+app_dir = File.expand_path("../../", __FILE__)+'/'
+
+
+every 4.hours do
+  command "app_env=#{app_env} backup perform -t db_backup --root-path #{app_dir}backup"
+end
+
+every 4.hours do
+  command "app_env=#{app_env} backup perform -t app_files_backup --root-path #{app_dir}backup"
+end
+
+every 1.day, :at => '5:30 am' do
+  command "app_env=#{app_env} backup perform -t user_files_backup --root-path #{app_dir}backup"
+end
+
+
+```
 
 * install cron with whenever
 
 ```
 rvmsudo app_env=production whenever --update-crontab
 ```
+
 
 * check crontab
 
