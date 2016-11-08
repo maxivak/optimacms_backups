@@ -20,7 +20,7 @@ namespace :optimacms_backups do
     ]
 
     files.each do |f|
-      source = File.join(Gem.loaded_specs["optimacms_backups"].full_gem_path, "backup", f)
+      source = File.join(Gem.loaded_specs["optimacms_backups"].full_gem_path, "lib/optimacms_backups/backup", f)
       target = File.join(Rails.root, "backup", f)
 
       FileUtils.cp_r source, target
