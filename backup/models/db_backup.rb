@@ -19,15 +19,7 @@ Model.new(:db_backup, 'Backup DB of Rails app') do
   #### Storages
 
   $backup_config['storages'].each do |b|
-    if b['type']=='local'
-      ##
-      # Local (Copy)
-      #
-      store_with Local do |local|
-        build_storage_local(local, b)
-      end
-
-    elsif b['type']=='scp'
+    if b['type']=='scp'
       store_with SCP do |server|
         build_storage_scp(server, b)
       end
@@ -40,6 +32,13 @@ Model.new(:db_backup, 'Backup DB of Rails app') do
         build_storage_s3(s3, b)
       end
 
+    elsif b['type']=='local'
+      ##
+      # Local (Copy)
+      #
+      store_with Local do |local|
+        build_storage_local(local, b)
+      end
     end
   end
 
