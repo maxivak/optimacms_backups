@@ -35,7 +35,7 @@ bundle install
 * install
 
 ```
-RAILS_ENV=development rake optimacms_backups:install
+rake optimacms_backups:install
 ```
 
 this will copy folder `backup/` to the Rails project.
