@@ -18,11 +18,13 @@ Model.new(:user_files_backup, 'App files') do
     ex_dirs = ($backup_config['backup']['user_files']['exclude'] rescue []) || []
 
     (in_dirs).each do |d|
-      archive.add "#{dir_app}#{d}"
+      dpath = (d=~ /^\//) ? d : "#{dir_app}#{d}"
+      archive.add dpath
     end
 
     (ignore_dirs+ex_dirs_base+ex_dirs).each do |d|
-      archive.exclude "#{dir_app}#{d}"
+      dpath = (d=~ /^\//) ? d : "#{dir_app}#{d}"
+      archive.exclude dpath
     end
 
   end

@@ -39,6 +39,8 @@ rake optimacms_backups:install
 ```
 
 this will copy folder `backup/` to the Rails project.
+Usually you do not need to touch files in `backup/` directory. Edit config files in `config/backup/` directory.
+
 
 
 
@@ -125,7 +127,9 @@ backup:
       
 ```
 
-* Directories to include to user files backup. Only these directories will be included
+* Directories to include to user files backup. ONLY these directories will be included.
+
+If directory starts from `/` it will be added as is otherwise the directory is considered as relative to the Rails application path. 
 
 
 ```
@@ -136,6 +140,7 @@ backup:
     include:
       - public/uploads
       - public/images
+      - /path/to/another/folder
       
 ```
 
