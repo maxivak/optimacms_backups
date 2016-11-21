@@ -6,6 +6,12 @@
 Model.new(:app_files_backup, 'App files') do
 
   archive :files do |archive|
+    # follow symlinks
+    #https://github.com/backup/backup/issues/169
+
+    archive.tar_options '-h'
+
+    #
     dir_app = $app_config[:path]
 
 
