@@ -25,6 +25,7 @@ gem install backup
 
 ```
 gem 'backup'
+gem 'backup-remote'
 gem 'optimacms_backups'
 ```
 
