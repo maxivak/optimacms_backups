@@ -94,7 +94,7 @@ class  OptimacmsBackups::Admin::BackupsController < Optimacms::Admin::AdminBaseC
   end
 
   def perform_backup(t)
-    cmd = %Q(app_env=#{Rails.env} bundle exec backup perform -t #{t}_backup --root-path backup 2>&1)
+    cmd = %Q(app_env=#{Rails.env} RAILS_ENV=#{Rails.env} bundle exec backup perform -t #{t}_backup --root-path backup 2>&1)
 
     output = ''
 
