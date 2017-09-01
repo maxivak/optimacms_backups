@@ -24,6 +24,7 @@ gem install backup
 * Gemfile:
 
 ```
+gem 'backup'
 gem 'optimacms_backups'
 ```
 
