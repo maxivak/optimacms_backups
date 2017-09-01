@@ -140,6 +140,24 @@ require_relative 'init'
 #     mail.encryption           = :starttls
    end
 
+
+  Notifier::Slack.defaults do |p|
+    if $backup_config['notify'] && $backup_config['notify']['slack']
+      c = $backup_config['notify']['slack']
+
+      p.on_success = c['success'].nil? ?  true : c['success']
+      p.on_warning = c['warning'].nil? ?  true : c['warning']
+      p.on_failure = c['failure'].nil? ?  true : c['failure']
+
+      # The integration token
+      p.webhook_url = c['webhook_url']
+      p.channel = c['channel'] if c['channel']
+      p.username = c['username'] if c['username']
+    end
+
+  end
+
+
 ##
 # Preconfigured Models
 #

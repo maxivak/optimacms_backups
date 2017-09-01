@@ -79,10 +79,19 @@ Model.new(:user_files_backup, 'App files') do
 
   ### notify
 
-  notify_by Mail do |mail|
-    c = $smtp_config
+  if $backup_config['notify']['mail']
 
+    notify_by Mail do |mail|
+      c = $smtp_config
 
+    end
   end
+
+  if $backup_config['notify']['slack']
+    notify_by Slack do |slack|
+
+    end
+  end
+
 
 end
