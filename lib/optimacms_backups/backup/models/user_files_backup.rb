@@ -18,9 +18,6 @@ Model.new(:user_files_backup, 'App files') do
     #archive.add "#{dir_app}"
 
     in_dirs = ($backup_config['backup']['user_files']['include'] rescue []) || []
-
-    ignore_dirs = %w[.idea .git .vagrant .ansible .chef]
-    ex_dirs_base = %w[tmp log  ]
     ex_dirs = ($backup_config['backup']['user_files']['exclude'] rescue []) || []
 
     (in_dirs).each do |d|
@@ -28,7 +25,7 @@ Model.new(:user_files_backup, 'App files') do
       archive.add dpath
     end
 
-    (ignore_dirs+ex_dirs_base+ex_dirs).each do |d|
+    (ex_dirs).each do |d|
       dpath = (d=~ /^\//) ? d : "#{dir_app}#{d}"
       archive.exclude dpath
     end

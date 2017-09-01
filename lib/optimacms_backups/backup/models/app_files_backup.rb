@@ -15,13 +15,9 @@ Model.new(:app_files_backup, 'App files') do
     dir_app = $app_config[:path]
 
 
-    #archive.add "/path/to/a/file.rb"
-    archive.add "#{dir_app}"
+    #archive.add "#{dir_app}"
 
     in_dirs = ($backup_config['backup']['app_files']['include'] rescue [])  || []
-
-    ignore_dirs = %w[.idea .git .vagrant .ansible .chef backup]
-    ex_dirs_base = %w[tmp log public/assets public/images public/uploads ]
     ex_dirs = ($backup_config['backup']['app_files']['exclude'] rescue []) || []
 
     (in_dirs).each do |d|
@@ -29,7 +25,7 @@ Model.new(:app_files_backup, 'App files') do
       archive.add dpath
     end
 
-    (ex_dirs_base+ignore_dirs+ex_dirs).each do |d|
+    (ex_dirs).each do |d|
       dpath = (d=~ /^\//) ? d : "#{dir_app}#{d}"
       archive.exclude dpath
     end

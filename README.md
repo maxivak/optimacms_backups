@@ -112,6 +112,8 @@ dir_backups_base: '/path/to/backups/myapp/'
 
 ## Config for backups
 
+
+### Backup app files
 * Directories to include/exclude in app files backup in addition to base directories
 
 ```
@@ -120,12 +122,18 @@ dir_backups_base: '/path/to/backups/myapp/'
 backup:
   app_files:
     include:
-      - public/img
-      
+      - app
+      - lib
+    
     exclude:
-      - public/cache
       - app/assets
-      
+      - .idea
+      - .git
+      - backup
+      - log
+      - tmp
+      - public/img
+      - public/cache
       
 ```
 
@@ -133,6 +141,8 @@ backup:
 
 If directory starts from `/` it will be added as is otherwise the directory is considered as relative to the Rails application path. 
 
+
+### Backup user files
 
 ```
 # config/backup/ __env__ .yml
@@ -143,7 +153,13 @@ backup:
       - public/uploads
       - public/images
       - /path/to/another/folder
+    
+    exclude:
+      - public/cache
+      - tmp
+      - log
       
+            
 ```
 
 
