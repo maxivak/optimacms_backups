@@ -301,15 +301,16 @@ storages:
 
 # Perform backups
 
-* you can perform backups from admin area of CMS or peform backups using backup gem
+* you can perform backups from admin area of CMS or perform backups using backup gem
 
 
 ## Perform backups manually
 
 ```
-app_env=production backup perform -t app_files_backup --root-path backup
-app_env=production backup perform -t user_files_backup --root-path backup
-app_env=production backup perform -t db_backup --root-path backup
+cd /project/path
+app_env=production bundle exec backup perform -t app_files_backup --root-path backup
+app_env=production bundle exec backup perform -t user_files_backup --root-path backup
+app_env=production bundle exec backup perform -t db_backup --root-path backup
 ```
 
 
