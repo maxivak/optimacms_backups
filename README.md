@@ -216,6 +216,24 @@ development:
 ```
 
 
+## Notify by Slack
+
+* 'config/backup/ <env> .yml'
+
+```
+notify:
+ slack:
+     webhook_url: "https://hooks.slack.com/webhook_url"
+     channel: "#your_channel"
+     username: "your_user"
+     success: true
+     warning: true
+     failure: true
+```
+
+
+
+
 
 ## Amazon S3
 
