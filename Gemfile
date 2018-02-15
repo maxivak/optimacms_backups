@@ -13,7 +13,7 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.7.1'
 
 gem 'mysql2', '0.3.20'
 
