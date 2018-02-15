@@ -39,7 +39,7 @@ gem 'compass-rails', '2.0.5'
 
 
 #
-gem 'paperclip', '~> 4.3'
+gem 'paperclip', '~> 5.2.0'
 gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
