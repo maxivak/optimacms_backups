@@ -30,7 +30,7 @@
     $('#status_commands').html("Sending...");
 
     $.ajax({
-      url: "/#{Optimacms.admin_namespace}/backups/" + cmd,
+      url: "/#{Optimacms.config.admin_namespace}/backups/" + cmd,
       data: {t: t},
       type: "GET",
       dataType: "json",

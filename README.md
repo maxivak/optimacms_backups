@@ -70,7 +70,7 @@ module Optimacms
             {
               title: 'Backups', route: nil,
               submenu: [
-                  {title: 'Backups', url: '/'+Optimacms.admin_namespace+'/backups' },
+                  {title: 'Backups', url: '/'+Optimacms.config.admin_namespace+'/backups' },
               ]
             }
         ]    

@@ -1,4 +1,7 @@
-Optimacms.main_namespace = ''
-Optimacms.admin_namespace = 'admin'
 
-Optimacms.files_dir_path = 'img'
+Optimacms.config do |c|
+  c.main_namespace = ''
+  c.admin_namespace = 'admin'
+
+  c.files_dir_path = 'img'
+end
